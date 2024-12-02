@@ -25,7 +25,7 @@
         <option value="1920x1080">1920x1080 (Desktop)</option>
     </select>
 
-    <button id="preview">Preview</button>
+    <!--<button id="preview">Preview</button>-->
     <br>
     
 
@@ -40,12 +40,13 @@
 
 
     <script>
-        const urlInput = document.getElementById('url');
-        const screenSizeSelect = document.getElementById('screen-size');
-        const previewButton = document.getElementById('preview');
-        const previewFrame = document.getElementById('preview-frame');
+        function $(e){let l=document.querySelectorAll(e);return l.length>1?l:l[0]}
+        const urlInput = $('#url');
+        const screenSizeSelect = $('#screen-size');
+        const previewButton =$('#preview');
+        const previewFrame = $('#preview-frame');
 
-        previewButton.addEventListener('click', () => {
+        function updateFrame() {
             const url = urlInput.value.trim();
             const screenSize = screenSizeSelect.value;
 
@@ -59,7 +60,11 @@
             previewFrame.style.width = `${width}px`;
             previewFrame.style.height = `${height}px`;
             previewFrame.hidden = false;
-        });
+        }
+
+        $("#screen-size").onchange = updateFrame()
+        $("#url").onblur = updateFrame()
+        
     </script>
     
 
