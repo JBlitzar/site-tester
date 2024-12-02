@@ -1,0 +1,60 @@
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JBlitzar Site Tester</title>
+    <link rel="stylesheet" href="https://jblitzar.github.io/global.css">
+</head>
+<body>
+  <div class="container">
+
+    <h1>Site Tester</h1>
+    <label for="url">Enter URL:</label>
+    <input type="text" id="url" placeholder="https://example.com" value="https://example.com">
+    
+    <label for="screen-size">Choose Screen Size:</label>
+    <select id="screen-size">
+        <option value="320x480">320x480 (Mobile Portrait)</option>
+        <option value="480x320">480x320 (Mobile Landscape)</option>
+        <option value="768x1024">768x1024 (Tablet Portrait)</option>
+        <option value="1024x768">1024x768 (Tablet Landscape)</option>
+        <option value="1366x768">1366x768 (Laptop)</option>
+        <option value="1920x1080">1920x1080 (Desktop)</option>
+    </select>
+
+    <button id="preview">Preview</button>
+    <br>
+    
+
+        
+    
+  </div>
+
+  <iframe id="preview-frame" src="https://example.com" style="width: 1024px; height: 768px;"></iframe>
+
+
+    <script>
+        const urlInput = document.getElementById('url');
+        const screenSizeSelect = document.getElementById('screen-size');
+        const previewButton = document.getElementById('preview');
+        const previewFrame = document.getElementById('preview-frame');
+
+        previewButton.addEventListener('click', () => {
+            const url = urlInput.value.trim();
+            const screenSize = screenSizeSelect.value;
+
+            if (!url) {
+                alert('Please enter a URL.');
+                return;
+            }
+
+            const [width, height] = screenSize.split('x');
+            previewFrame.src = url.startsWith('http') ? url : `https://${url}`;
+            previewFrame.style.width = `${width}px`;
+            previewFrame.style.height = `${height}px`;
+            previewFrame.hidden = false;
+        });
+    </script>
+    
+
+
+</body></html>
