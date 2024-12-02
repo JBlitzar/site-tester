@@ -64,6 +64,9 @@
 
         $("#screen-size").onchange = updateFrame
         $("#url").onblur = updateFrame
+        $("#url").onkeydown = (event)=>{
+            if(event.keyCode==13){ $('#url').blur(); return false;}
+        }
         
     </script>
     
