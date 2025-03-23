@@ -1,8 +1,8 @@
-<html lang="en"><head>
-
+<html lang="en">
+  <head>
     <title>JBlitzar Site Tester</title>
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="preload"
       as="script"
@@ -32,16 +32,20 @@
     />
     <link rel="stylesheet" href="https://jblitzar.github.io/global.css" />
     <link rel=icon href=https://jblitzar.github.io/favicon.png>
-</head>
-<body>
-  <div class="container">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Site Tester</h1>
+      <label for="url">Enter URL:</label>
+      <input
+        type="text"
+        id="url"
+        placeholder="https://example.com"
+        value="https://example.com"
+      />
 
-    <h1>Site Tester</h1>
-    <label for="url">Enter URL:</label>
-    <input type="text" id="url" placeholder="https://example.com" value="https://example.com">
-    
-    <label for="screen-size">Choose Screen Size:</label>
-    <select id="screen-size">
+      <label for="screen-size">Choose Screen Size:</label>
+      <select id="screen-size">
         <option value="320x480">320x480 (Mobile Portrait)</option>
         <option value="480x320">480x320 (Mobile Landscape)</option>
         <option value="360x640">360x640 (HD, Modern Mobile Portrait)</option>
@@ -52,53 +56,53 @@
         <option value="1366x768">1366x768 (Laptop)</option>
         <option value="1728x878">1728x878 (Larger Laptop)</option>
         <option value="1920x1080">1920x1080 (Desktop)</option>
-    </select>
+      </select>
 
-    <!--<button id="preview">Preview</button>-->
-    <br>
-    
-
-        
-    
-  </div>
+      <!--<button id="preview">Preview</button>-->
+      <br />
+    </div>
     <center style="padding-bottom: 100px">
-          <iframe id="preview-frame" src="https://example.com" style="width: 1024px; height: 768px;"></iframe>
+      <iframe
+        id="preview-frame"
+        src="https://example.com"
+        style="width: 1024px; height: 768px; border: 1px solid #000"
+      ></iframe>
     </center>
 
-
-
-
     <script>
-        function $(e){let l=document.querySelectorAll(e);return l.length>1?l:l[0]}
-        const urlInput = $('#url');
-        const screenSizeSelect = $('#screen-size');
-        const previewButton =$('#preview');
-        const previewFrame = $('#preview-frame');
+      function $(e) {
+        let l = document.querySelectorAll(e);
+        return l.length > 1 ? l : l[0];
+      }
+      const urlInput = $("#url");
+      const screenSizeSelect = $("#screen-size");
+      const previewButton = $("#preview");
+      const previewFrame = $("#preview-frame");
 
-        function updateFrame() {
-            const url = urlInput.value.trim();
-            const screenSize = screenSizeSelect.value;
+      function updateFrame() {
+        const url = urlInput.value.trim();
+        const screenSize = screenSizeSelect.value;
 
-            if (!url) {
-                alert('Please enter a URL.');
-                return;
-            }
-
-            const [width, height] = screenSize.split('x');
-            previewFrame.src = url.startsWith('http') ? url : `https://${url}`;
-            previewFrame.style.width = `${width}px`;
-            previewFrame.style.height = `${height}px`;
-            previewFrame.hidden = false;
+        if (!url) {
+          alert("Please enter a URL.");
+          return;
         }
 
-        $("#screen-size").onchange = updateFrame
-        $("#url").onblur = updateFrame
-        $("#url").onkeydown = (event)=>{
-            if(event.keyCode==13){ $('#url').blur(); return false;}
+        const [width, height] = screenSize.split("x");
+        previewFrame.src = url.startsWith("http") ? url : `https://${url}`;
+        previewFrame.style.width = `${width}px`;
+        previewFrame.style.height = `${height}px`;
+        previewFrame.hidden = false;
+      }
+
+      $("#screen-size").onchange = updateFrame;
+      $("#url").onblur = updateFrame;
+      $("#url").onkeydown = (event) => {
+        if (event.keyCode == 13) {
+          $("#url").blur();
+          return false;
         }
-        
+      };
     </script>
-    
-
-
-</body></html>
+  </body>
+</html>
